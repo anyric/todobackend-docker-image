@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM python:3
 MAINTAINER Anyama Richard
 
 #Prevent dpkg error
@@ -11,9 +11,9 @@ RUN sed -i "s/http:\/\/archive./http:\/\/nz.archive./g" /etc/apt/sources.list
 RUN apt-get update && \
   apt-get install apt-transport-https ca-certificates -y --force-yes \
   -o APT::Install-Recommend=false -o APT::Install-Suggests=false \
-  python python-virtualenv
+  python-virtualenv
 
-RUN virtualenv /appenv && \
+RUN virtualenv -p python3 /appenv && \
   . /appenv/bin/activate 
 
 # Add entrypoit script
